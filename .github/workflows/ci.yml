@@ -52,7 +52,7 @@ jobs:
         mypy . --exclude '(^|/)tests/|quality_check\.py|manage\.py|(^|/)venv/|(_test\.py$)' --ignore-missing-imports --disable-error-code var-annotated
 
     - name: Upload test coverage report
-      uses: actions/upload-artifact@v3@8b3d3c6f99c49971690f5e0d1695c4903ed5eacf
+      uses: actions/upload-artifact@v3
       with:
         name: test-coverage-report
         path: htmlcov/
