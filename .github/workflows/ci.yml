@@ -15,46 +15,44 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest-cov pycodestyle flake8 mypy bandit
-    
+
     - name: Run migrations
       run: |
         python manage.py migrate
-    
+
     - name: Run tests with pytest
       run: |
         pytest --cov=.
-    
+
     - name: PEP8 compliance check
       run: |
         pycodestyle . --exclude=venv,migrations,tests,quality_check.py,manage.py --max-line-length=100
-    
+
     - name: Lint with flake8
       run: |
-        # flake8 .
         flake8 . --exclude='.git,__pycache__,*/migrations/*,venv,quality_check.py' --max-line-length=100
 
-    
     - name: Security analysis with bandit
       run: |
         bandit -r . --exclude '*/tests/*,*/venv/*,*/migrations/*,*quality_check.py*' --skip B101
-    
+
     - name: Type check with mypy
       run: |
         mypy . --exclude '(^|/)tests/|quality_check\.py|manage\.py|(^|/)venv/|(_test\.py$)' --ignore-missing-imports --disable-error-code var-annotated
-    
+
     - name: Upload test coverage report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3@8b3d3c6f99c49971690f5e0d1695c4903ed5eacf
       with:
         name: test-coverage-report
         path: htmlcov/
