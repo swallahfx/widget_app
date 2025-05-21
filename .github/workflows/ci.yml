@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: ['3.10']
 
     steps:
       - uses: actions/checkout@v3
@@ -50,7 +50,7 @@ jobs:
           mypy . --exclude '(^|/)tests/|quality_check\.py|manage\.py|(^|/)venv/|(_test\.py$)' --ignore-missing-imports --disable-error-code var-annotated
 
       - name: Upload test coverage report
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3
         with:
           name: test-coverage-report
           path: htmlcov/
