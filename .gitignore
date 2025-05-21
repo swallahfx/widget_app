@@ -1,0 +1,42 @@
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore directories
+node_modules/
+dist/
+build/
+.idea/
+
+# Ignore all .log files
+*.log
+
+# Ignore all .tmp files but not .gitignore
+*.tmp
+!*.gitignore
+
+# Ignore all files ending with .bak
+*.bak
+
+# Ignore files that begin with a tilde (~), common for temporary or backup files
+~*
+
+# Ignore all files in the logs directory at any level
+**/logs/
+
+# Ignore all .env files except the one in the root
+.env
+
+# Ignore test/ folder and files within it
+test/
+test/**/*.js
+
+__pycache__/
+
+venv/
+venv/
+venv_new/
+.venv/
+
+*.pyc
+__pycache__/
